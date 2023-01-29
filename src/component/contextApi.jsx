@@ -1,6 +1,8 @@
 import React ,{createContext , useReducer} from 'react'
 import { useHistory } from 'react-router-dom';
 import Reducer from "./Reducer"
+ import { ToastContainer, toast } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 const initialState = {
     basketItem : []
 }
@@ -17,7 +19,7 @@ const history = useHistory();
         type : 'Add_Item', 
         payLoad : item
        })
-  
+    toast("item added");
     }
 
    function removeFromBasket(id){
@@ -27,6 +29,7 @@ const history = useHistory();
           payLoad : id
 
         })
+        toast("item removed")
    }
    function emptyBasket(){
     dispatch({
@@ -35,7 +38,9 @@ const history = useHistory();
     })
       history.push('/')
    }
-       
+      
+    //  const notify = () => toast("Wow so easy !");
+
     return (
     <BasketContext.Provider
      value={{
@@ -46,6 +51,7 @@ const history = useHistory();
      }}
     >
        {children}
+       <ToastContainer/>
     </BasketContext.Provider>
   )
 }
