@@ -1,17 +1,23 @@
-import React from "react";
-import "../Header/Header.css";
+import React ,{useContext} from "react";
+import "./Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
+import { BasketContext } from "../contextApi";
 function Header() {
+  const {basket} = useContext(BasketContext);
+ 
   return (
     <div className="header">
       {/* header-logo */}
 
-      <img
-        src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-        alt="amazon-logo"
-        className="header__logo"
-      />
+      <Link to="/">
+        <img
+          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          alt="amazon-logo"
+          className="header__logo"
+        />
+      </Link>
 
       {/* header-input-box */}
       <div className="header__search">
@@ -36,10 +42,12 @@ function Header() {
           <span className="header__optionLineTwo">Prime</span>
         </div>
       </div>
-      <div className="header__optionBasket">
-        <ShoppingBasketIcon />
-        <span className="header__optionLineTwo header__basketCount">0</span>
-      </div>
+      <Link to ="/checkout" style={{textDecoration :"none"}}>
+        <div className="header__optionBasket">
+          <ShoppingBasketIcon />
+          <span className="header__optionLineTwo header__basketCount">{basket.length}</span>
+        </div>
+      </Link>
     </div>
   );
 }
