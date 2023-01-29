@@ -3,7 +3,7 @@ import CurrencyFormat from "react-currency-format";
 import "./Subtotal.css"
 import { BasketContext } from '../contextApi';
 function Subtotal() {
-  const {basket} = useContext(BasketContext);
+  const { basket, emptyBasket } = useContext(BasketContext);
 
   function totalPrice(){
        
@@ -39,7 +39,7 @@ function Subtotal() {
         prefix={"$"}
       />
 
-      <button>Proceed to checkout</button>
+      <button onClick={emptyBasket}>Proceed to checkout</button>
     </div>
   );
 }

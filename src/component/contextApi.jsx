@@ -23,7 +23,11 @@ const history = useHistory();
     }
 
    function removeFromBasket(id){
-       
+    // console.log(state.basketItem);
+  const item = state.basketItem.filter((item) => item.id !== id); 
+  console.log(item);
+
+
     dispatch({
           type : 'Remove_Item',
           payLoad : id
@@ -32,10 +36,15 @@ const history = useHistory();
         toast("item removed")
    }
    function emptyBasket(){
+    if(state.basketItem.length ===0){
+      toast('cart is empty please add item first');
+      return;
+    }
     dispatch({
             type : "Empty",
             payload : ''  
     })
+    toast("Order is Placed")
       history.push('/')
    }
       

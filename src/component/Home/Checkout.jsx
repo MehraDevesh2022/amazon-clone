@@ -1,8 +1,10 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Basket from './BasketItems';
 import "./Checkout.css"
 import Subtotal from './Subtotal';
+import { BasketContext } from '../contextApi';
 function Checkout() {
+  const {basket} = useContext(BasketContext)
   return (
   
     <div className="checkout">
@@ -15,9 +17,9 @@ function Checkout() {
 
         <div>
           <h3>Hello John Doe</h3>
-          <h2 className="checkout__title">Your Shoping Basket</h2>
+          <h2 className="checkout__title">Your Shoping Basket{basket.length ===0 && ' is empty'}</h2>
         </div>
-        
+
         <Basket/>
       </div>
       <div className="checkout__right">
